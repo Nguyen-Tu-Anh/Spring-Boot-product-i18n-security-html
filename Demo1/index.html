@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+    <style>
+        body {
+            font: 400 15px/1.8 Lato, sans-serif;
+            color: #777;
+        }
+        h3, h4 {
+            margin: 10px 0 30px 0;
+            letter-spacing: 10px;
+            font-size: 20px;
+            color: #111;
+        }
+        .container {
+            padding: 80px 120px;
+        }
+        .person {
+            border: 10px solid transparent;
+            margin-bottom: 25px;
+            width: 80%;
+            height: 80%;
+            opacity: 0.7;
+        }
+        .person:hover {
+            border-color: #f1f1f1;
+        }
+        .carousel-inner img {
+            -webkit-filter: grayscale(90%);
+            filter: grayscale(90%); /* make all photos black and white */
+            width: 100%; /* Set width to 100% */
+            margin: auto;
+        }
+        .carousel-caption h3 {
+            color: #fff !important;
+        }
+        @media (max-width: 600px) {
+            .carousel-caption {
+                display: none; /* Hide the carousel text when the screen is less than 600 pixels wide */
+            }
+        }
+        .bg-1 {
+            background: #2d2d30;
+            color: #bdbdbd;
+        }
+        .bg-1 h3 {color: #fff;}
+        .bg-1 p {font-style: italic;}
+        .list-group-item:first-child {
+            border-top-right-radius: 0;
+            border-top-left-radius: 0;
+        }
+        .list-group-item:last-child {
+            border-bottom-right-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+        .thumbnail {
+            padding: 0 0 15px 0;
+            border: none;
+            border-radius: 0;
+        }
+        .thumbnail p {
+            margin-top: 15px;
+            color: #555;
+        }
+        .btn {
+            padding: 10px 20px;
+            background-color: #333;
+            color: #f1f1f1;
+            border-radius: 0;
+            transition: .2s;
+        }
+        .btn:hover, .btn:focus {
+            border: 1px solid #333;
+            background-color: #fff;
+            color: #000;
+        }
+        .modal-header, h4, .close {
+            background-color: #333;
+            color: #fff !important;
+            text-align: center;
+            font-size: 30px;
+        }
+        .modal-header, .modal-body {
+            padding: 40px 50px;
+        }
+        .nav-tabs li a {
+            color: #777;
+        }
+        #googleMap {
+            width: 100%;
+            height: 400px;
+            -webkit-filter: grayscale(100%);
+            filter: grayscale(100%);
+        }
+        .navbar {
+            font-family: Montserrat, sans-serif;
+            margin-bottom: 0;
+            background-color: #2d2d30;
+            border: 0;
+            font-size: 11px !important;
+            letter-spacing: 4px;
+            opacity: 0.9;
+        }
+        .navbar li a, .navbar .navbar-brand {
+            color: #d5d5d5 !important;
+        }
+        .navbar-nav li a:hover {
+            color: #fff !important;
+        }
+        .navbar-nav li.active a {
+            color: #fff !important;
+            background-color: #29292c !important;
+        }
+        .navbar-default .navbar-toggle {
+            border-color: transparent;
+        }
+        .open .dropdown-toggle {
+            color: #fff;
+            background-color: #555 !important;
+        }
+        .dropdown-menu li a {
+            color: #000 !important;
+        }
+        .dropdown-menu li a:hover {
+            background-color: red !important;
+        }
+        footer {
+            background-color: #2d2d30;
+            color: #f5f5f5;
+            padding: 32px;
+        }
+        footer a {
+            color: #f5f5f5;
+        }
+        footer a:hover {
+            color: #777;
+            text-decoration: none;
+        }
+        .form-control {
+            border-radius: 0;
+        }
+        textarea {
+            resize: none;
+        }
+    </style>
+
+</head>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html">TA Store</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right">
+                <li> <a href="index.html" id="home">HOME</a></li>
+
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="language">LANGUAGE
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a id="vietnamese" onclick="showLanguage('vi')">VIETNAMESE</a></li>
+                        <li><a id="english" onclick="showLanguage('en')">ENGLISH</a></li>
+                    </ul>
+                </li>
+                <li><a href="#"><span class="glyphicon glyphicon-search"></span></a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <h2>Product Management</h2>
+    <table class="table table-striped">
+        <div class="input-group">
+            <div class="form-outline" style="display: inline-block">
+                <input id="search-input" type="search" id="form1" class="form-control" placeholder="Search"/>
+                <button id="search-button" type="button" class="btn btn-primary">
+                    Search
+                </button>
+            </div>
+        </div>
+
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal"
+                onclick="selectCategory()">
+            Create new
+        </button>
+        <thead>
+        <tr>
+            <th id="idLg">Id</th>
+            <th id="nameLg">Name</th>
+            <th id="priceLg">Price</th>
+            <th id="imgLg">Img</th>
+            <th id="CategoryLg">Category</th>
+            <th id="ActionLg">Action</th>
+        </tr>
+        </thead>
+        <tbody id="tbody">
+
+        </tbody>
+
+    </table>
+</div>
+
+
+<!--modalCreate-->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLabel">Create Product</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" class="form-control" id="name">
+                </div>
+                <div class="form-group">
+                    <label for="img">Img:</label>
+                    <input type="text" class="form-control" id="img">
+                </div>
+                <div class="form-group">
+                    <label for="price">Price:</label>
+                    <input type="text" class="form-control" id="price">
+                </div>
+                <div class="form-group">
+                    <label>Category:</label>
+                    <select id="idCategory">
+                    </select>
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="create()" data-dismiss="modal">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End modalCreate-->
+
+<!--modalEdit-->
+<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLabel2">Update Product</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group" hidden>
+                    <label for="nameEdit">Name:</label>
+                    <input type="text" class="form-control" id="idEdit">
+                </div>
+                <div class="form-group">
+                    <label for="nameEdit">Name:</label>
+                    <input type="text" class="form-control" id="nameEdit">
+                </div>
+                <div class="form-group">
+                    <label for="imgEdit">Img:</label>
+                    <input type="text" class="form-control" id="imgEdit">
+                </div>
+                <div class="form-group">
+                    <label for="priceEdit">Price:</label>
+                    <input type="text" class="form-control" id="priceEdit">
+                </div>
+                <div class="form-group">
+                    <label>Category:</label>
+                    <select id="idCategoryEdit">
+                    </select>
+                </div>
+
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="edit()" data-dismiss="modal">Update</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End modalEdit-->
+
+<!--modalDelete-->
+<div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLabel3">Delete Product</h3>
+                <h4 style="color: darkred">Are you sure?</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group" hidden>
+                    <label for="idDelete">Id:</label>
+                    <input type="text" class="form-control" id="idDelete">
+                </div>
+                <div class="form-group">
+                    <label for="nameDelete">Name:</label>
+                    <input type="text" class="form-control" id="nameDelete">
+                </div>
+                <div class="form-group">
+                    <label for="imgDelete">Img:</label>
+                    <input type="text" class="form-control" id="imgDelete">
+                </div>
+                <div class="form-group">
+                    <label for="priceDelete">Price:</label>
+                    <input type="text" class="form-control" id="priceDelete">
+                </div>
+                <div class="form-group">
+                    <label for="idCategoryDelete">Category:</label>
+                    <input type="text" class="form-control" id="idCategoryDelete">
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-danger" onclick="Delete()" data-dismiss="modal">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End modalDelete-->
+
+</body>
+<script>
+    function show() {
+        $.ajax({
+            type: "GET",
+            url: "http://localhost:8080/products",
+
+            success: function (data) {
+                let str = "";
+                for (let i = 0; i < data.length; i++) {
+                    str += "<tr>"
+                    str += `<td>${data[i].id}</td>`
+                    str += `<td>${data[i].name}</td>`
+                    str += `<td>${data[i].price}</td>`
+                    str += `<td><img src="${data[i].img}" height="150" width="200"></td>`
+                    str += `<td>${data[i].category.name}</td>`
+                    str += `<td>
+<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal2" onclick="showEdit(${data[i].id})">
+            Update
+ </button>
+
+ <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal3" onclick="showDelete(${data[i].id})">
+            Delete
+ </button>
+
+</td>`
+                    str += "</tr>"
+                }
+
+                document.getElementById("tbody").innerHTML = str;
+            },
+            error: function (err) {
+                console.log(err)
+            }
+        })
+    }
+
+    show();
+
+    function selectCategory() {
+        $.ajax({
+            type: "GET",
+            url: "http://localhost:8080/products/category",
+            success: function (data) {
+                let str = "";
+                for (let i = 0; i < data.length; i++) {
+                    str += `<option value="${data[i].id}">${data[i].name}</option>`
+                }
+                document.getElementById("idCategory").innerHTML = str;
+                document.getElementById("idCategoryEdit").innerHTML = str;
+            },
+
+            error: function (err) {
+                console.log(err)
+            }
+        })
+    }
+
+    function create() {
+        let name = document.getElementById("name").value;
+        let img = document.getElementById("img").value;
+        let price = document.getElementById("price").value;
+        let idCategory = document.getElementById("idCategory").value;
+        let product = {
+            name: name,
+            img: img,
+            price: price,
+            category: {id: idCategory}
+        }
+
+        $.ajax({
+            type: "POST",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            url: "http://localhost:8080/products",
+            data: JSON.stringify(product),
+            //xử lý khi thành công
+            success: function (data) {
+                show()
+            },
+            error: function (err) {
+                console.log(err)
+            }
+        })
+    }
+
+
+    function showEdit(id) {
+
+        $.ajax({
+            type: "GET",
+            url: "http://localhost:8080/products/" + id,
+
+            success: function (data) {
+                document.getElementById("idEdit").value = data.id
+                document.getElementById("nameEdit").value = data.name
+                document.getElementById("imgEdit").value = data.img
+                document.getElementById("priceEdit").value = data.price
+                selectCategory()
+            },
+            error: function (err) {
+                console.log(err)
+            }
+        })
+    }
+
+
+    function edit() {
+        let id = document.getElementById("idEdit").value;
+        let name = document.getElementById("nameEdit").value;
+        let img = document.getElementById("imgEdit").value;
+        let price = document.getElementById("priceEdit").value;
+        let idCategory = document.getElementById("idCategoryEdit").value;
+        let product = {
+            id: id,
+            name: name,
+            img: img,
+            price: price,
+            category: {id: idCategory}
+        }
+
+        $.ajax({
+            type: "PUT",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            url: "http://localhost:8080/products/" + id,
+            data: JSON.stringify(product),
+            //xử lý khi thành công
+            success: function (data) {
+                show()
+            },
+            error: function (err) {
+                console.log(err)
+            }
+        })
+    }
+
+    function showDelete(id) {
+        $.ajax({
+            type: "GET",
+            url: "http://localhost:8080/products/" + id,
+
+            success: function (data) {
+                document.getElementById("idDelete").value = data.id
+                document.getElementById("nameDelete").value = data.name
+                document.getElementById("imgDelete").value = data.img
+                document.getElementById("priceDelete").value = data.price
+                document.getElementById("idCategoryDelete").value = data.category.name
+            },
+            error: function (err) {
+                console.log(err)
+            }
+        })
+    }
+
+    function Delete() {
+        let id = document.getElementById("idDelete").value;
+
+        $.ajax({
+            type: "DELETE",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            url: "http://localhost:8080/products/" + id,
+            //xử lý khi thành công
+            success: function (data) {
+                show()
+            },
+            error: function (err) {
+                console.log(err)
+            }
+        })
+    }
+
+    const searchButton = document.getElementById('search-button');
+    const searchInput = document.getElementById('search-input');
+    searchButton.addEventListener('click', () => {
+        const inputValue = searchInput.value;
+        showSearchProducts(inputValue)
+    });
+
+    function showSearchProducts(inputValue) {
+        $.ajax({
+            type: "GET",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            url: "http://localhost:8080/products/search/" + inputValue,
+            //xử lý khi thành công
+            success: function (data) {
+                let str = "";
+                for (let i = 0; i < data.length; i++) {
+                    str += "<tr>"
+                    str += `<td>${data[i].id}</td>`
+                    str += `<td>${data[i].name}</td>`
+                    str += `<td>${data[i].price}</td>`
+                    str += `<td><img src="${data[i].img}" height="150" width="200"></td>`
+                    str += `<td>${data[i].category.name}</td>`
+                    str += `<td>
+<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal2" onclick="showEdit(${data[i].id})">
+            Update
+ </button>
+
+ <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal3" onclick="showDelete(${data[i].id})">
+            Delete
+ </button>
+
+</td>`
+                    str += "</tr>"
+                }
+                document.getElementById("tbody").innerHTML = str;
+            },
+            error: function (err) {
+                console.log(err)
+            }
+        })
+    }
+
+    function showLanguage(lg) {
+
+        $.ajax({
+            type: "GET",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            url: "http://localhost:8080/products/language?lg=" + lg,
+
+            success: function (data) {
+                document.getElementById("home").innerText = data.home
+                document.getElementById("language").innerText = data.language
+                document.getElementById("vietnamese").innerText = data.vietnamese
+                document.getElementById("english").innerText = data.english
+                document.getElementById("nameLg").innerText = data.name
+                document.getElementById("priceLg").innerText = data.price
+                document.getElementById("imgLg").innerText = data.img
+                document.getElementById("CategoryLg").innerText = data.category
+                document.getElementById("ActionLg").innerText = data.action
+            },
+            error: function (err) {
+                console.log(err)
+            }
+        })
+    }
+
+
+</script>
+</html>
